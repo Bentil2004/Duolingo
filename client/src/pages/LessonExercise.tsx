@@ -28,12 +28,13 @@ const LessonExercise = () => {
   
   // Get language data
   const languageData = languages.find(lang => lang.id === language);
+  const languageId = language || '';
   
   // Get exercises for this lesson
-  const exercises = getExercises(language, lessonIdNum);
+  const exercises = getExercises(languageId, lessonIdNum);
   
   // Get language progress
-  const progress = getLanguageProgress(language);
+  const progress = getLanguageProgress(languageId);
   
   useEffect(() => {
     // When we reach the end of exercises, go to completion page
@@ -49,7 +50,7 @@ const LessonExercise = () => {
   
   const handleCompleteExercise = (isCorrect: boolean) => {
     if (currentExerciseIndex < exercises.length) {
-      completeExercise(language, lessonIdNum, exercises[currentExerciseIndex].id, isCorrect);
+      completeExercise(languageId, lessonIdNum, exercises[currentExerciseIndex].id, isCorrect);
     }
   };
   
