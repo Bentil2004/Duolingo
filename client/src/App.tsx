@@ -7,6 +7,9 @@ import LanguageSelection from "@/pages/LanguageSelection";
 import LessonsOverview from "@/pages/LessonsOverview";
 import LessonExercise from "@/pages/LessonExercise";
 import LessonCompletion from "@/pages/LessonCompletion";
+import Profile from "@/pages/Profile";
+import Leaderboard from "@/pages/Leaderboard";
+import Settings from "@/pages/Settings";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MobileNavigation from "@/components/MobileNavigation";
@@ -19,6 +22,9 @@ function Router() {
       <Route path="/lessons/:language" component={LessonsOverview} />
       <Route path="/lesson/:language/:lessonId" component={LessonExercise} />
       <Route path="/completion/:language/:lessonId" component={LessonCompletion} />
+      <Route path="/profile" component={Profile} />
+      <Route path="/leaderboard" component={Leaderboard} />
+      <Route path="/settings" component={Settings} />
       <Route component={NotFound} />
     </Switch>
   );
