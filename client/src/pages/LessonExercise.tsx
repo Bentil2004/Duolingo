@@ -39,13 +39,13 @@ const LessonExercise = () => {
   useEffect(() => {
     // When we reach the end of exercises, go to completion page
     if (currentExerciseIndex >= exercises.length && exercises.length > 0) {
-      setLocation(`/completion/${language}/${lessonId}`);
+      setLocation(`/completion/${languageId}/${lessonId}`);
     }
-  }, [currentExerciseIndex, exercises.length, language, lessonId, setLocation]);
+  }, [currentExerciseIndex, exercises.length, languageId, lessonId, setLocation]);
   
   const handleExitLesson = () => {
     resetExerciseProgress();
-    setLocation(`/lessons/${language}`);
+    setLocation(`/lessons/${languageId}`);
   };
   
   const handleCompleteExercise = (isCorrect: boolean) => {

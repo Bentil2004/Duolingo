@@ -72,12 +72,12 @@ const LessonCompletion = () => {
   const handleContinue = () => {
     resetExerciseProgress();
     const nextLessonId = lessonIdNum + 1;
-    setLocation(`/lesson/${language}/${nextLessonId}`);
+    setLocation(`/lesson/${languageId}/${nextLessonId}`);
   };
   
   const handleBackToLessons = () => {
     resetExerciseProgress();
-    setLocation(`/lessons/${language}`);
+    setLocation(`/lessons/${languageId}`);
   };
   
   return (
