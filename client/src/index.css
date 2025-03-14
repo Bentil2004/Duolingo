@@ -8,6 +8,36 @@
   }
 
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply font-sans antialiased bg-gray-50 text-foreground;
+  }
+}
+
+@layer components {
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+  
+  .gradient-heading {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70 font-extrabold;
+  }
+  
+  .lesson-card {
+    @apply rounded-xl shadow-md transition-all duration-300 bg-white hover:shadow-lg hover:-translate-y-1;
+  }
+  
+  .lesson-card-locked {
+    @apply rounded-xl shadow-sm bg-gray-100 border border-gray-200 opacity-70 cursor-not-allowed;
+  }
+  
+  .lesson-card-completed {
+    @apply rounded-xl shadow-md bg-primary/5 border border-primary/20;
+  }
+  
+  .exercise-container {
+    @apply p-6 rounded-xl bg-white shadow-sm;
+  }
+  
+  .toggle {
+    @apply appearance-none w-11 h-6 rounded-full bg-gray-200 cursor-pointer relative transition-colors duration-300 ease-in-out checked:bg-primary after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all after:duration-300 checked:after:translate-x-5;
   }
 }
