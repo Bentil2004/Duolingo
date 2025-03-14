@@ -85,7 +85,34 @@ const LessonExercise = () => {
   const progressPercent = ((currentExerciseIndex + 1) / currentExerciseCount) * 100;
   
   // Get current exercise
-  const currentExercise: Exercise = exercises[currentExerciseIndex];
+  const currentExercise: Exercise | undefined = exercises[currentExerciseIndex];
+  
+  // If we have no current exercise, show loading state
+  if (!currentExercise) {
+    return (
+      <motion.div 
+        className="flex items-center justify-center min-h-[80vh]"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.3 }}
+      >
+        <div className="text-center bg-white p-10 rounded-2xl shadow-md">
+          <div className="flex justify-center mb-6">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+          </div>
+          <h2 className="text-2xl font-bold mb-4">Loading exercise...</h2>
+          <p className="text-gray-600 mb-6">Please wait while we prepare your lesson.</p>
+          <button 
+            onClick={handleExitLesson}
+            className="inline-flex items-center px-6 py-3 bg-primary text-white font-medium rounded-full hover:bg-primary/90 transition-colors"
+          >
+            <X className="h-5 w-5 mr-2" />
+            Cancel and return to lessons
+          </button>
+        </div>
+      </motion.div>
+    );
+  }
   
   return (
     <motion.section 
