@@ -1,14 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useLocation } from "wouter";
 import { useLanguage } from "@/context/LanguageContext";
-import { X, Heart, Trophy, Flag, Volume2 } from "lucide-react";
+import { X, Heart, Trophy, Flag, Volume2, VolumeX } from "lucide-react";
 import ProgressBar from "@/components/ProgressBar";
 import MultipleChoiceExercise from "@/components/exercises/MultipleChoiceExercise";
 import MatchingExercise from "@/components/exercises/MatchingExercise";
 import FillBlankExercise from "@/components/exercises/FillBlankExercise";
+import ListeningExercise from "@/components/exercises/ListeningExercise";
+import PronunciationExercise from "@/components/exercises/PronunciationExercise";
 import { Exercise } from "@/types";
 import { motion, AnimatePresence } from "framer-motion";
 import { languages } from "@/data/languages";
+import { useAudioEffect } from "@/hooks/use-audio";
 
 const LessonExercise = () => {
   const { language, lessonId } = useParams();
@@ -22,6 +25,11 @@ const LessonExercise = () => {
     correctAnswers
   } = useLanguage();
   const [, setLocation] = useLocation();
+  const [isSoundEnabled, setIsSoundEnabled] = useState(true);
+  
+  // Sound effects for correct/incorrect answers
+  const { play: playCorrect } = useAudioEffect("correct.mp3");
+  const { play: playIncorrect } = useAudioEffect("incorrect.mp3");
   
   // Convert lessonId to number
   const lessonIdNum = parseInt(lessonId, 10);
@@ -49,9 +57,22 @@ const LessonExercise = () => {
   };
   
   const handleCompleteExercise = (isCorrect: boolean) => {
+    // Play the appropriate sound if sound is enabled
+    if (isSoundEnabled) {
+      if (isCorrect) {
+        playCorrect();
+      } else {
+        playIncorrect();
+      }
+    }
+    
     if (currentExerciseIndex < exercises.length) {
       completeExercise(languageId, lessonIdNum, exercises[currentExerciseIndex].id, isCorrect);
     }
+  };
+  
+  const toggleSound = () => {
+    setIsSoundEnabled(!isSoundEnabled);
   };
   
   // If no exercises or loading
@@ -158,8 +179,16 @@ const LessonExercise = () => {
               <span className="font-bold text-amber-600">+{correctAnswers * 5} XP</span>
             </div>
             
-            <button className="p-2 rounded-full bg-blue-50 text-blue-500 hover:bg-blue-100 transition-colors">
-              <Volume2 className="h-4 w-4" />
+            <button 
+              onClick={toggleSound}
+              className="p-2 rounded-full bg-blue-50 text-blue-500 hover:bg-blue-100 transition-colors"
+              aria-label={isSoundEnabled ? "Disable sound" : "Enable sound"}
+            >
+              {isSoundEnabled ? (
+                <Volume2 className="h-4 w-4" />
+              ) : (
+                <VolumeX className="h-4 w-4" />
+              )}
             </button>
           </div>
         </div>
@@ -208,6 +237,20 @@ const LessonExercise = () => {
                 <FillBlankExercise 
                   exercise={currentExercise} 
                   onComplete={handleCompleteExercise} 
+                />
+              )}
+              
+              {currentExercise.type === 'listening' && (
+                <ListeningExercise
+                  exercise={currentExercise}
+                  onComplete={handleCompleteExercise}
+                />
+              )}
+              
+              {currentExercise.type === 'pronunciation' && (
+                <PronunciationExercise
+                  exercise={currentExercise}
+                  onComplete={handleCompleteExercise}
                 />
               )}
             </motion.div>

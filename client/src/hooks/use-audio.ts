@@ -96,7 +96,7 @@ export function useAudio(src?: string) {
  */
 export function useAudioEffect(src?: string, options = {}) {
   const fullSrc = src ? (src.startsWith('http') ? src : `${AUDIO_BASE_URL}/${src}`) : '';
-  const [play, { stop, isPlaying, duration }] = useSound(fullSrc, {
+  const [play, { stop, duration }] = useSound(fullSrc, {
     soundEnabled: true,
     ...options
   });
@@ -104,7 +104,6 @@ export function useAudioEffect(src?: string, options = {}) {
   return {
     play,
     stop,
-    isPlaying,
     duration
   };
 }

@@ -1,4 +1,4 @@
-import { Exercise, MultipleChoiceExercise, MatchingExercise, FillBlankExercise } from "@/types";
+import { Exercise, MultipleChoiceExercise, MatchingExercise, FillBlankExercise, ListeningExercise, PronunciationExercise } from "@/types";
 
 // Create language-specific exercises
 const frenchExercises: Record<number, Exercise[]> = {
@@ -8,6 +8,7 @@ const frenchExercises: Record<number, Exercise[]> = {
       type: "multiple-choice",
       question: "Select the correct translation",
       prompt: "Bonjour, comment ça va?",
+      promptAudio: "french/bonjour-comment-ca-va.mp3",
       options: [
         { id: "1", text: "Hello, how are you?", isCorrect: true },
         { id: "2", text: "Good morning, what's your name?", isCorrect: false },
@@ -19,29 +20,49 @@ const frenchExercises: Record<number, Exercise[]> = {
       id: "fr-match-1",
       type: "matching",
       pairs: [
-        { id: "1", sourceText: "bonjour", targetText: "hello" },
-        { id: "2", sourceText: "merci", targetText: "thank you" },
-        { id: "3", sourceText: "au revoir", targetText: "goodbye" },
-        { id: "4", sourceText: "s'il vous plaît", targetText: "please" }
+        { id: "1", sourceText: "bonjour", targetText: "hello", sourceAudio: "french/bonjour.mp3" },
+        { id: "2", sourceText: "merci", targetText: "thank you", sourceAudio: "french/merci.mp3" },
+        { id: "3", sourceText: "au revoir", targetText: "goodbye", sourceAudio: "french/au-revoir.mp3" },
+        { id: "4", sourceText: "s'il vous plaît", targetText: "please", sourceAudio: "french/sil-vous-plait.mp3" }
       ]
     },
     {
       id: "fr-fill-1",
       type: "fill-blank",
       sentence: "Je ______ un café, s'il vous plaît.",
+      sentenceAudio: "french/je-voudrais-un-cafe.mp3",
       options: [
-        { id: "1", text: "voudrais", isCorrect: true },
-        { id: "2", text: "veux", isCorrect: false },
-        { id: "3", text: "suis", isCorrect: false },
-        { id: "4", text: "ai", isCorrect: false }
+        { id: "1", text: "voudrais", isCorrect: true, audio: "french/voudrais.mp3" },
+        { id: "2", text: "veux", isCorrect: false, audio: "french/veux.mp3" },
+        { id: "3", text: "suis", isCorrect: false, audio: "french/suis.mp3" },
+        { id: "4", text: "ai", isCorrect: false, audio: "french/ai.mp3" }
       ],
       blankPosition: 1
+    },
+    {
+      id: "fr-listening-1",
+      type: "listening",
+      audio: "french/je-mappelle-jean.mp3",
+      question: "What did you hear?",
+      options: [
+        { id: "1", text: "Je m'appelle Jean.", isCorrect: true },
+        { id: "2", text: "J'habite à Paris.", isCorrect: false },
+        { id: "3", text: "Je suis français.", isCorrect: false },
+        { id: "4", text: "J'aime le français.", isCorrect: false }
+      ]
+    },
+    {
+      id: "fr-pronunciation-1",
+      type: "pronunciation",
+      text: "Bonjour, je m'appelle Marie.",
+      audio: "french/bonjour-je-mappelle-marie.mp3"
     },
     {
       id: "fr-mc-2",
       type: "multiple-choice",
       question: "Select the correct translation",
       prompt: "Je m'appelle Jean.",
+      promptAudio: "french/je-mappelle-jean.mp3",
       options: [
         { id: "1", text: "My name is Jean.", isCorrect: true },
         { id: "2", text: "I call Jean.", isCorrect: false },
@@ -53,8 +74,9 @@ const frenchExercises: Record<number, Exercise[]> = {
       id: "fr-fill-2",
       type: "fill-blank",
       sentence: "Il y a ______ personnes dans la salle.",
+      sentenceAudio: "french/il-y-a-trois-personnes.mp3",
       options: [
-        { id: "1", text: "trois", isCorrect: true },
+        { id: "1", text: "trois", isCorrect: true, audio: "french/trois.mp3" },
         { id: "2", text: "trois de", isCorrect: false },
         { id: "3", text: "les trois", isCorrect: false },
         { id: "4", text: "de trois", isCorrect: false }
