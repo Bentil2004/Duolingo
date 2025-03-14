@@ -38,6 +38,7 @@ export interface ExerciseOption {
   id: string;
   text: string;
   isCorrect: boolean;
+  audio?: string; // Path to the audio file for this option
 }
 
 export interface MultipleChoiceExercise {
@@ -46,12 +47,16 @@ export interface MultipleChoiceExercise {
   question: string;
   prompt: string;
   options: ExerciseOption[];
+  questionAudio?: string; // Optional path to audio file for the question
+  promptAudio?: string; // Optional path to audio file for the prompt
 }
 
 export interface MatchingPair {
   id: string;
   sourceText: string;
   targetText: string;
+  sourceAudio?: string; // Optional path to audio file for source text
+  targetAudio?: string; // Optional path to audio file for target text
 }
 
 export interface MatchingExercise {
@@ -66,6 +71,27 @@ export interface FillBlankExercise {
   sentence: string;
   options: ExerciseOption[];
   blankPosition: number;
+  sentenceAudio?: string; // Optional path to audio file for the complete sentence
 }
 
-export type Exercise = MultipleChoiceExercise | MatchingExercise | FillBlankExercise;
+export interface ListeningExercise {
+  id: string;
+  type: 'listening';
+  audio: string; // Path to the audio file that user must listen to
+  question: string;
+  options: ExerciseOption[];
+}
+
+export interface PronunciationExercise {
+  id: string;
+  type: 'pronunciation';
+  text: string; // Text that user must pronounce
+  audio: string; // Path to the correct pronunciation audio
+}
+
+export type Exercise = 
+  | MultipleChoiceExercise 
+  | MatchingExercise 
+  | FillBlankExercise
+  | ListeningExercise
+  | PronunciationExercise;
