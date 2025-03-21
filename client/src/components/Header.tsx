@@ -28,7 +28,7 @@ const Header = () => {
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center">
             <Link href="/" className="inline-block">
-              <span className="text-primary font-extrabold text-2xl">Lingoleap</span>
+              <span className="text-primary font-extrabold text-2xl">DUOLINGO</span>
             </Link>
           </div>
           
@@ -50,7 +50,7 @@ const Header = () => {
             <Link href="/" className="text-neutral-700 hover:text-primary transition">Home</Link>
             <Link href="/profile" className="text-neutral-700 hover:text-primary transition">Profile</Link>
             <Link href="/leaderboard" className="text-neutral-700 hover:text-primary transition">Leaderboard</Link>
-            <Link href="/settings" className="text-neutral-700 hover:text-primary transition">Settings</Link>
+            {/* <Link href="/settings" className="text-neutral-700 hover:text-primary transition">Settings</Link> */}
           </div>
           
           <button 
@@ -67,7 +67,6 @@ const Header = () => {
         </div>
       </header>
       
-      {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
         <div className="bg-white shadow-md p-4 fixed w-full z-30" style={{ top: '60px' }}>
           <div className="flex justify-between mb-4">
@@ -90,7 +89,7 @@ const Header = () => {
             <Link href="/" className="text-neutral-700 hover:text-primary transition py-2">Home</Link>
             <Link href="/profile" className="text-neutral-700 hover:text-primary transition py-2">Profile</Link>
             <Link href="/leaderboard" className="text-neutral-700 hover:text-primary transition py-2">Leaderboard</Link>
-            <Link href="/settings" className="text-neutral-700 hover:text-primary transition py-2">Settings</Link>
+            {/* <Link href="/settings" className="text-neutral-700 hover:text-primary transition py-2">Settings</Link> */}
           </nav>
         </div>
       )}

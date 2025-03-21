@@ -13,13 +13,11 @@ const Profile = () => {
   const { userProgress } = useLanguage();
   const [activeTab, setActiveTab] = useState("stats");
   
-  // Calculate total XP and other stats
   const totalXP = userProgress.reduce((sum, lang) => sum + lang.xp, 0);
   const totalGems = userProgress.reduce((sum, lang) => sum + lang.gems, 0);
   const currentStreak = Math.max(...userProgress.map(lang => lang.streak));
   const totalHearts = userProgress.reduce((sum, lang) => sum + lang.hearts, 0);
   
-  // Mock achievements data
   const achievements = [
     { id: 1, name: "First Steps", description: "Complete your first lesson", isCompleted: true },
     { id: 2, name: "Streak Master", description: "Maintain a 7-day streak", isCompleted: false },
@@ -48,8 +46,19 @@ const Profile = () => {
         </p>
       </motion.div>
       
+
+
+
+
+
+
+
+
+
+
+
+
       <div className="flex flex-col md:flex-row gap-8 md:items-start">
-        {/* Profile sidebar */}
         <motion.div 
           className="md:w-1/3"
           initial={{ opacity: 0, x: -20 }}
@@ -100,7 +109,6 @@ const Profile = () => {
           </Card>
         </motion.div>
         
-        {/* Main content */}
         <motion.div 
           className="md:w-2/3"
           initial={{ opacity: 0, x: 20 }}

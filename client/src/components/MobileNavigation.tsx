@@ -32,11 +32,12 @@ const MobileNavigation = () => {
         <BarChart2 className="h-6 w-6" />
         <span className="text-xs">Leaderboard</span>
       </Link>
-      
+{/*       
       <Link href="/settings" className={`flex flex-col items-center ${isSettings ? 'text-primary' : 'text-gray-500'}`}>
         <Settings className="h-6 w-6" />
         <span className="text-xs">Settings</span>
-      </Link>
+      </Link> */}
+      
     </nav>
   );
 };
