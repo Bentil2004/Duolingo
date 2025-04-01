@@ -26,26 +26,20 @@ const LessonExercise = () => {
   } = useLanguage();
   const [, setLocation] = useLocation();
   const [isSoundEnabled, setIsSoundEnabled] = useState(true);
-  
-  // Sound effects for correct/incorrect answers
+
   const { play: playCorrect } = useAudioEffect("correct.mp3");
   const { play: playIncorrect } = useAudioEffect("incorrect.mp3");
-  
-  // Convert lessonId to number
+
   const lessonIdNum = parseInt(lessonId, 10);
-  
-  // Get language data
+
   const languageData = languages.find(lang => lang.id === language);
   const languageId = language || '';
-  
-  // Get exercises for this lesson
+
   const exercises = getExercises(languageId, lessonIdNum);
-  
-  // Get language progress
+
   const progress = getLanguageProgress(languageId);
   
   useEffect(() => {
-    // When we reach the end of exercises, go to completion page
     if (currentExerciseIndex >= exercises.length && exercises.length > 0) {
       setLocation(`/completion/${languageId}/${lessonId}`);
     }
@@ -57,7 +51,6 @@ const LessonExercise = () => {
   };
   
   const handleCompleteExercise = (isCorrect: boolean) => {
-    // Play the appropriate sound if sound is enabled
     if (isSoundEnabled) {
       if (isCorrect) {
         playCorrect();
@@ -74,8 +67,7 @@ const LessonExercise = () => {
   const toggleSound = () => {
     setIsSoundEnabled(!isSoundEnabled);
   };
-  
-  // If no exercises or loading
+
   if (!exercises.length) {
     return (
       <motion.div 
@@ -101,14 +93,11 @@ const LessonExercise = () => {
       </motion.div>
     );
   }
-  
-  // Calculate progress percentage
+
   const progressPercent = ((currentExerciseIndex + 1) / currentExerciseCount) * 100;
-  
-  // Get current exercise
+
   const currentExercise: Exercise | undefined = exercises[currentExerciseIndex];
-  
-  // If we have no current exercise, show loading state
+
   if (!currentExercise) {
     return (
       <motion.div 

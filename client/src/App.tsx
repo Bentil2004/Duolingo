@@ -9,22 +9,29 @@ import LessonExercise from "@/pages/LessonExercise";
 import LessonCompletion from "@/pages/LessonCompletion";
 import Profile from "@/pages/Profile";
 import Leaderboard from "@/pages/Leaderboard";
-import Settings from "@/pages/Settings";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Landing from "./pages/Landing";
+import Chart from "./pages/Chart";
+
+
+
+
 import MobileNavigation from "@/components/MobileNavigation";
 import { LanguageProvider } from "@/context/LanguageContext";
+
 
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={LanguageSelection} />
+      <Route path="/" component={Landing} />
+      <Route path="/languageSelection" component={LanguageSelection} />
       <Route path="/lessons/:language" component={LessonsOverview} />
       <Route path="/lesson/:language/:lessonId" component={LessonExercise} />
       <Route path="/completion/:language/:lessonId" component={LessonCompletion} />
       <Route path="/profile" component={Profile} />
       <Route path="/leaderboard" component={Leaderboard} />
-      <Route path="/settings" component={Settings} />
+      <Route path="/chart" component={Chart} />
       <Route component={NotFound} />
     </Switch>
   );

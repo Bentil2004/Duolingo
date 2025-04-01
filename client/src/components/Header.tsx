@@ -7,11 +7,9 @@ const Header = () => {
   const { userProgress, selectedLanguage } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [location] = useLocation();
-  
-  // Show header except on exercise page
+
   const isExercisePage = location.includes('/lesson/');
-  
-  // Calculate user progress for the selected language
+
   const currentProgress = selectedLanguage 
     ? userProgress.find(p => p.languageId === selectedLanguage.id)
     : userProgress[0];
@@ -47,10 +45,8 @@ const Header = () => {
               <span className="font-bold">{currentProgress?.gems || 0}</span>
             </div>
             
-            <Link href="/" className="text-neutral-700 hover:text-primary transition">Home</Link>
-            <Link href="/profile" className="text-neutral-700 hover:text-primary transition">Profile</Link>
-            <Link href="/leaderboard" className="text-neutral-700 hover:text-primary transition">Leaderboard</Link>
-            {/* <Link href="/settings" className="text-neutral-700 hover:text-primary transition">Settings</Link> */}
+            <Link href="/languageSelection" className="text-neutral-700 hover:text-primary transition">Home</Link>
+            <Link href="/chart" className="text-neutral-700 hover:text-primary transition">Chart</Link>
           </div>
           
           <button 
@@ -86,10 +82,8 @@ const Header = () => {
           </div>
           
           <nav className="flex flex-col space-y-3">
-            <Link href="/" className="text-neutral-700 hover:text-primary transition py-2">Home</Link>
-            <Link href="/profile" className="text-neutral-700 hover:text-primary transition py-2">Profile</Link>
-            <Link href="/leaderboard" className="text-neutral-700 hover:text-primary transition py-2">Leaderboard</Link>
-            {/* <Link href="/settings" className="text-neutral-700 hover:text-primary transition py-2">Settings</Link> */}
+            <Link href="/languageSelection" className="text-neutral-700 hover:text-primary transition py-2">Home</Link> 
+            <Link href="/chart" className="text-neutral-700 hover:text-primary transition py-2">Chart</Link>
           </nav>
         </div>
       )}

@@ -9,8 +9,7 @@ import { motion } from "framer-motion";
 const LessonsOverview = () => {
   const { language } = useParams();
   const { getLanguageProgress, getLessons } = useLanguage();
-  
-  // Find language data
+
   const languageData = languages.find(lang => lang.id === language);
   
   if (!languageData) {
@@ -40,14 +39,11 @@ const LessonsOverview = () => {
       </motion.section>
     );
   }
-  
-  // Get user progress
+
   const progress = getLanguageProgress(languageData.id);
-  
-  // Get lessons
+
   const units = getLessons(languageData.id);
-  
-  // Calculate completion percentage
+
   const totalLessons = units.reduce((total, unit) => total + unit.lessons.length, 0);
   const completedLessons = units.reduce((total, unit) => {
     return total + unit.lessons.filter(lesson => lesson.isCompleted).length;
@@ -187,7 +183,6 @@ const LessonsOverview = () => {
   );
 };
 
-// Helper function to calculate unit completion status
 function unitCompletionStatus(unit: { lessons: { isCompleted: boolean }[] }) {
   const totalLessons = unit.lessons.length;
   const completedLessons = unit.lessons.filter(lesson => lesson.isCompleted).length;
@@ -197,7 +192,6 @@ function unitCompletionStatus(unit: { lessons: { isCompleted: boolean }[] }) {
   return `${completedLessons}/${totalLessons} completed`;
 }
 
-// Lock icon as a component
 const Lock = ({ className }: { className?: string }) => (
   <svg 
     xmlns="http://www.w3.org/2000/svg" 
