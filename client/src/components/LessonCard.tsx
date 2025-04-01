@@ -20,8 +20,7 @@ const LessonCard = ({ lesson, languageId }: LessonCardProps) => {
     resetExerciseProgress();
     setLocation(`/lesson/${languageId}/${lesson.id}`);
   };
-  
-  // Determine the card style based on lesson state
+
   let cardClass = '';
   if (lesson.isLocked) {
     cardClass = 'lesson-card-locked';

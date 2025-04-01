@@ -46,7 +46,7 @@ const Header = () => {
             </div>
             
             <Link href="/languageSelection" className="text-neutral-700 hover:text-primary transition">Home</Link>
-            <Link href="/chart" className="text-neutral-700 hover:text-primary transition">Chart</Link>
+            <Link href="/chart" className="text-neutral-700 hover:text-primary transition">Bot</Link>
           </div>
           
           <button 
@@ -83,7 +83,7 @@ const Header = () => {
           
           <nav className="flex flex-col space-y-3">
             <Link href="/languageSelection" className="text-neutral-700 hover:text-primary transition py-2">Home</Link> 
-            <Link href="/chart" className="text-neutral-700 hover:text-primary transition py-2">Chart</Link>
+            <Link href="/chart" className="text-neutral-700 hover:text-primary transition py-2">Bot</Link>
           </nav>
         </div>
       )}
